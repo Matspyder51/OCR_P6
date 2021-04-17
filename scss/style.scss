@@ -1,0 +1,290 @@
+$header-height: 125px;
+
+html, body {
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
+}
+
+body {
+	background:  rgba(0, 0, 0, .8);
+}
+
+header {
+	width: 100vw;
+	height: $header-height;
+
+	background: rgba(0, 0, 0, .5);
+	color: white;
+	text-align: center;
+
+	display: grid;
+
+	grid-template-columns: 0.2fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+		". .";
+
+	box-sizing: border-box;
+	padding: 2px;
+
+	h1 {
+		display: inline-block;
+		margin: 0;
+		height: $header-height;
+		line-height: $header-height;
+	}
+		
+	ul {
+		margin: 0;
+		height: $header-height;
+		line-height: $header-height;
+		list-style: none;
+	
+		li {
+			box-sizing: border-box;
+			display: inline-block;
+			padding: 0 10px;
+			font-size: 22px;
+			height: 100%;
+			width: 150px;
+
+			a {
+				display: inline-block;
+				text-decoration: none;
+				color: inherit;
+				width: 100%;
+			}
+
+			&:hover {
+				color: rgb(180, 180, 180);
+			}
+		}
+	}
+}
+
+.main_movie {
+	width: 90%;
+	height: 250px;
+	margin: 15px auto;
+	display: grid;
+
+	grid-template-columns: 0.3fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+		". .";
+
+	.movie_infos {
+		display: inline-block;
+		text-align: center;
+		box-sizing: border-box;
+		padding: 20%;
+
+		h2 {
+			text-align: center;
+			color: white;
+		}
+
+		.play_btn {
+			max-width: 75%;
+			margin: 0 auto;
+			border: 1px solid rgb(140, 0, 0);
+			border-radius: 5px;
+			background: rgb(185, 1, 1);
+			color: white;
+			padding: 5px;
+			cursor: pointer;
+
+			&:hover {
+				background: rgb(215, 1, 1);
+			}
+		}
+	}
+
+	img {
+		display: inline-block;
+		width: 100%;
+		height: 250px;
+	}
+}
+
+.container {
+	width: 100vw;
+	min-height: 100vh;
+	height: 100%;
+
+	margin: 0;
+
+	// background:  rgba(0, 0, 0, .8);
+}
+
+.carousel {
+	position: relative;
+	width: 100%;
+	text-align: center;
+	margin: 5px;
+	font-weight: bold;
+	font-size: 22px;
+
+	.title {
+		color: white;
+	}
+
+	.movies {
+		position: relative;
+		padding-right: 30px;
+
+		.movie {
+			position: relative;
+			margin: 0 20px;
+			height: 100%;
+			display: inline-block;
+			opacity: .65;
+			cursor: pointer;
+
+			&:hover {
+				opacity: 1;
+
+				.title {
+					opacity: 1;
+				}
+			}
+
+			&.hide {
+				display: none;
+			}
+
+			.title {
+				position: absolute;
+				background: rgba(0, 0, 0, .6);
+				width: 100%;
+				height: 20%;
+				opacity: 0;
+				padding-top: 15px;
+				transition: opacity .25s linear;
+			}
+		}
+	}
+
+	.left {
+		z-index: 5;
+		position: absolute;
+		height: 98%;
+		width: 2.5%;
+		left: 17%;
+		background: rgba(0, 0, 0, .6);
+		display: inline-block;
+		color: white;
+		text-align: center;
+		opacity: .5;
+
+		line-height: 275px;
+
+		&.disabled {
+			opacity: .4;
+		}
+
+		&:not(.disabled) {
+			cursor: pointer;
+		}
+
+		&:not(.disabled):hover {
+			opacity: 1;
+
+			i {
+			 transform: scale(1.5);
+			}
+		}
+	}
+
+	.right {
+		z-index: 5;
+		position: absolute;
+		height: 98%;
+		width: 2.5%;
+		// right: .5%;
+		background: rgba(0, 0, 0, .6);
+		display: inline-block;
+		color: white;
+		text-align: center;
+		opacity: .5;
+
+		line-height: 275px;
+
+		&.disabled {
+			opacity: .4;
+		}
+
+		&:not(.disabled) {
+			cursor: pointer;
+		}
+
+		&:not(.disabled):hover {
+			opacity: 1;
+
+			i {
+			 transform: scale(1.5);
+			}
+		}
+	}
+}
+
+.modal-container {
+	// display: none;
+	z-index: 100;
+	position: fixed;
+	height: 100vh;
+	width: 100vw;
+	background: rgba(0, 0, 0, .4);
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity .75s linear;
+
+	.modal {
+		position: relative;
+		color: white;
+		margin: 10% auto;
+		padding: 15px;
+		width: 50%;
+		height: 50%;
+		background: rgba(0, 0, 0, .8);
+
+		.close {
+			position: absolute;
+			top: 1%;
+			right: 1%;
+			cursor: pointer;
+			font-size: 22px;
+			transition: opacity .25s linear;
+			opacity: .6;
+
+			&:hover {
+				opacity: 1;
+			}
+		}
+
+		.image {
+			display: inline-block;
+			margin-right: 15px;
+		}
+
+		.base_infos {
+			display: inline-block;
+			vertical-align: top;
+
+			.title {
+				margin: 5px 0;
+				font-size: 32px;
+				text-decoration: underline;
+			}
+		}
+	}
+}
+
+.modal-container.visible {
+	// display: block;
+	visibility: visible;
+	opacity: 1;
+}

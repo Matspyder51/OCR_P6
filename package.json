@@ -1,0 +1,14 @@
+{
+  "name": "p6",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sass": "npx sass --watch ./scss/:./css/"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "sass": "^1.32.8"
+  }
+}

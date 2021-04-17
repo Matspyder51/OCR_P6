@@ -1,0 +1,242 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+body {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+header {
+  width: 100vw;
+  height: 125px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 0.2fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-template-areas: ". .";
+  box-sizing: border-box;
+  padding: 2px;
+}
+header h1 {
+  display: inline-block;
+  margin: 0;
+  height: 125px;
+  line-height: 125px;
+}
+header ul {
+  margin: 0;
+  height: 125px;
+  line-height: 125px;
+  list-style: none;
+}
+header ul li {
+  box-sizing: border-box;
+  display: inline-block;
+  padding: 0 10px;
+  font-size: 22px;
+  height: 100%;
+  width: 150px;
+}
+header ul li a {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+}
+header ul li:hover {
+  color: #b4b4b4;
+}
+
+.main_movie {
+  width: 90%;
+  height: 250px;
+  margin: 15px auto;
+  display: grid;
+  grid-template-columns: 0.3fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-template-areas: ". .";
+}
+.main_movie .movie_infos {
+  display: inline-block;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 20%;
+}
+.main_movie .movie_infos h2 {
+  text-align: center;
+  color: white;
+}
+.main_movie .movie_infos .play_btn {
+  max-width: 75%;
+  margin: 0 auto;
+  border: 1px solid #8c0000;
+  border-radius: 5px;
+  background: #b90101;
+  color: white;
+  padding: 5px;
+  cursor: pointer;
+}
+.main_movie .movie_infos .play_btn:hover {
+  background: #d70101;
+}
+.main_movie img {
+  display: inline-block;
+  width: 100%;
+  height: 250px;
+}
+
+.container {
+  width: 100vw;
+  min-height: 100vh;
+  height: 100%;
+  margin: 0;
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  margin: 5px;
+  font-weight: bold;
+  font-size: 22px;
+}
+.carousel .title {
+  color: white;
+}
+.carousel .movies {
+  position: relative;
+  padding-right: 30px;
+}
+.carousel .movies .movie {
+  position: relative;
+  margin: 0 20px;
+  height: 100%;
+  display: inline-block;
+  opacity: 0.65;
+  cursor: pointer;
+}
+.carousel .movies .movie:hover {
+  opacity: 1;
+}
+.carousel .movies .movie:hover .title {
+  opacity: 1;
+}
+.carousel .movies .movie.hide {
+  display: none;
+}
+.carousel .movies .movie .title {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 20%;
+  opacity: 0;
+  padding-top: 15px;
+  transition: opacity 0.25s linear;
+}
+.carousel .left {
+  z-index: 5;
+  position: absolute;
+  height: 98%;
+  width: 2.5%;
+  left: 17%;
+  background: rgba(0, 0, 0, 0.6);
+  display: inline-block;
+  color: white;
+  text-align: center;
+  opacity: 0.5;
+  line-height: 275px;
+}
+.carousel .left.disabled {
+  opacity: 0.4;
+}
+.carousel .left:not(.disabled) {
+  cursor: pointer;
+}
+.carousel .left:not(.disabled):hover {
+  opacity: 1;
+}
+.carousel .left:not(.disabled):hover i {
+  transform: scale(1.5);
+}
+.carousel .right {
+  z-index: 5;
+  position: absolute;
+  height: 98%;
+  width: 2.5%;
+  background: rgba(0, 0, 0, 0.6);
+  display: inline-block;
+  color: white;
+  text-align: center;
+  opacity: 0.5;
+  line-height: 275px;
+}
+.carousel .right.disabled {
+  opacity: 0.4;
+}
+.carousel .right:not(.disabled) {
+  cursor: pointer;
+}
+.carousel .right:not(.disabled):hover {
+  opacity: 1;
+}
+.carousel .right:not(.disabled):hover i {
+  transform: scale(1.5);
+}
+
+.modal-container {
+  z-index: 100;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.4);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.75s linear;
+}
+.modal-container .modal {
+  position: relative;
+  color: white;
+  margin: 10% auto;
+  padding: 15px;
+  width: 50%;
+  height: 50%;
+  background: rgba(0, 0, 0, 0.8);
+}
+.modal-container .modal .close {
+  position: absolute;
+  top: 1%;
+  right: 1%;
+  cursor: pointer;
+  font-size: 22px;
+  transition: opacity 0.25s linear;
+  opacity: 0.6;
+}
+.modal-container .modal .close:hover {
+  opacity: 1;
+}
+.modal-container .modal .image {
+  display: inline-block;
+  margin-right: 15px;
+}
+.modal-container .modal .base_infos {
+  display: inline-block;
+  vertical-align: top;
+}
+.modal-container .modal .base_infos .title {
+  margin: 5px 0;
+  font-size: 32px;
+  text-decoration: underline;
+}
+
+.modal-container.visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+/*# sourceMappingURL=style.css.map */

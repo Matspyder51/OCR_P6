@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>JustStreamIt</title>
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+
+	<div class="modal-container">
+		<div class="modal">
+			<div class="close" onclick="CloseModal()"><i class="fas fa-times"></i></div>
+
+			<div class="image"><img src="./image_test.jpg" alt="MovieImage"></div>
+			<div class="base_infos">
+				<h2 class="title">Movie Title</h2>
+				<div class="info rated">
+					Classement: 
+					<span>
+						<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+					</span>
+				</div>
+				<div class="info imdb">
+					Score Imdb:
+					<span>6.1</span>
+				</div>
+				<div class="info release_date">
+					Année de sortie: 
+					<span>2021</span>
+				</div>
+				<div class="info type">
+					Genres:
+					<span>Biography - Crime - Drama</span>
+				</div>
+				<div class="info realisator">
+					Réalisateur:
+					<span>Alexander Black</span>
+				</div>
+				<div class="info actors">
+					Distribution:
+					<span>Blanche Bayliss, Chauncey Depew, William Courtenay</span>
+				</div>
+				<div class="duration">
+					Durée:
+					<span>162 minutes</span>
+				</div>
+				<div class="countries">
+					Pays:
+					<span>USA</span>
+				</div>
+			</div>
+			<div class="description">
+				When his brother is killed in a robbery, paraplegic Marine Jake Sully decides to take his place in a mission on the distant world of Pandora. There he learns of greedy corporate figurehead Parker Selfridge's intentions of driving off the native humanoid \"Na'vi\" in order to mine for the precious material scattered throughout their rich woodland. In exchange for the spinal surgery that will fix his legs, Jake gathers knowledge, of the Indigenous Race and their Culture, for the cooperating military unit spearheaded by gung-ho Colonel Quaritch, while simultaneously attempting to infiltrate the Na'vi people with the use of an \"avatar\" identity. While Jake begins to bond with the native tribe and quickly falls in love with the beautiful alien Neytiri, the restless Colonel moves forward with his ruthless extermination tactics, forcing the soldier to take a stand - and fight back in an epic battle for the fate of Pandora.
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<header>
+			<h1>JustStreamIt</h1>
+
+			<ul>
+				<li><a href="#">Accueil</a></li>
+				<li><a href="#">Catégories</a></li>
+			</ul>
+		</header>
+	
+		<div class="main_movie">
+			<div class="movie_infos">
+				<h2>Movie Title</h2>
+				<div class="play_btn" onclick="OpenModal()"><i class="fas fa-play"></i> Play</div>
+			</div>
+			<img src="https://picsum.photos/1200/600" alt="Movie1">
+		</div>
+		<div class="carousel">
+			<div class="title">Films les mieux notés</div>
+
+			<div class="movies">
+				<div class="left disabled" onclick="SlideLeft(this)"><i class="fas fa-chevron-left"></i></div>
+				<div class="movie" onclick="OpenModal(this)">
+					<div class="title">Title</div>
+					<img src="./image_test.jpg" alt="Movie1">
+				</div>
+
+				<div class="movie">
+					<div class="title">Title</div>
+					<img src="./image_test2.jpg" alt="Movie1">
+				</div>
+
+				<div class="movie">
+					<div class="title">Title</div>
+					<img src="./image_test.jpg" alt="Movie1">
+				</div>
+
+				<div class="movie">
+					<div class="title">Title</div>
+					<img src="./image_test2.jpg" alt="Movie1">
+				</div>
+
+				<div class="movie">
+					<div class="title">Title</div>
+					<img src="./image_test.jpg" alt="Movie1">
+				</div>
+
+				<div class="movie hide">
+					<div class="title">Title</div>
+					<img src="./image_test2.jpg" alt="Movie1">
+				</div>
+
+				<div class="movie hide">
+					<div class="title">Title</div>
+					<img src="./image_test.jpg" alt="Movie1">
+				</div>
+
+				<div class="right" onclick="SlideRight(this)"><i class="fas fa-chevron-right"></i></div>
+			</div>
+		</div>
+		<div class="carousel">
+			<div class="title">Catégorie 1</div>
+
+			<div class="movies">
+				<div class="left"><i class="fas fa-chevron-left"></i></div>
+				<div class="movie">
+					<div class="title">Title</div>
+					<img src="./image_test.jpg" alt="Movie1">
+				</div>
+
+				<div class="movie">
+					<div class="title">Title</div>
+					<img src="./image_test.jpg" alt="Movie1">
+				</div>
+
+				<div class="movie">
+					<div class="title">Title</div>
+					<img src="./image_test.jpg" alt="Movie1">
+				</div>
+
+				<div class="movie">
+					<div class="title">Title</div>
+					<img src="./image_test.jpg" alt="Movie1">
+				</div>
+
+				<div class="movie">
+					<div class="title">Title</div>
+					<img src="./image_test.jpg" alt="Movie1">
+				</div>
+
+				<div class="movie hide">
+					<div class="title">Title</div>
+					<img src="./image_test.jpg" alt="Movie1">
+				</div>
+
+				<div class="movie hide">
+					<div class="title">Title</div>
+					<img src="./image_test.jpg" alt="Movie1">
+				</div>
+
+				<div class="right"><i class="fas fa-chevron-right"></i></div>
+			</div>
+		</div>
+		<div class="carousel">
+			<div class="title">Catégorie 2</div>
+
+			<div class="movies">
+				<div class="left"><i class="fas fa-chevron-left"></i></div>
+				<div class="movie">
+					<div class="title">Title</div>
+					<img src="./image_test.jpg" alt="Movie1">
+				</div>
+
+				<div class="movie">
+					<div class="title">Title</div>
+					<img src="./image_test.jpg" alt="Movie1">
+				</div>
+
+				<div class="movie">
+					<div class="title">Title</div>
+					<img src="./image_test.jpg" alt="Movie1">
+				</div>
+
+				<div class="movie">
+					<div class="title">Title</div>
+					<img src="./image_test.jpg" alt="Movie1">
+				</div>
+
+				<div class="movie">
+					<div class="title">Title</div>
+					<img src="./image_test.jpg" alt="Movie1">
+				</div>
+
+				<div class="movie hide">
+					<div class="title">Title</div>
+					<img src="./image_test.jpg" alt="Movie1">
+				</div>
+
+				<div class="movie hide">
+					<div class="title">Title</div>
+					<img src="./image_test.jpg" alt="Movie1">
+				</div>
+
+				<div class="right"><i class="fas fa-chevron-right"></i></div>
+			</div>
+		</div>
+		<div class="carousel">
+			<div class="title">Catégorie 3</div>
+
+			<div class="movies">
+				<div class="left"><i class="fas fa-chevron-left"></i></div>
+				<div class="movie">
+					<div class="title">Title</div>
+					<img src="./image_test.jpg" alt="Movie1">
+				</div>
+
+				<div class="movie">
+					<div class="title">Title</div>
+					<img src="./image_test.jpg" alt="Movie1">
+				</div>
+
+				<div class="movie">
+					<div class="title">Title</div>
+					<img src="./image_test.jpg" alt="Movie1">
+				</div>
+
+				<div class="movie">
+					<div class="title">Title</div>
+					<img src="./image_test.jpg" alt="Movie1">
+				</div>
+
+				<div class="movie">
+					<div class="title">Title</div>
+					<img src="./image_test.jpg" alt="Movie1">
+				</div>
+
+				<div class="movie hide">
+					<div class="title">Title</div>
+					<img src="./image_test.jpg" alt="Movie1">
+				</div>
+
+				<div class="movie hide">
+					<div class="title">Title</div>
+					<img src="./image_test.jpg" alt="Movie1">
+				</div>
+
+				<div class="right"><i class="fas fa-chevron-right"></i></div>
+			</div>
+		</div>
+	</div>
+	<script src="./index.js"></script>
+</body>
+</html>
