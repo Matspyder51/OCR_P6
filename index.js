@@ -83,8 +83,6 @@ async function GetMovieInfos(id) {
 }
 
 async function AddCarousel(label, name) {
-	console.log("Add")
-	const movies = await GetMoviesOfCategory(name);
 	const carousel = document.createElement('div');
 	carousel.classList.add('carousel');
 
@@ -97,15 +95,18 @@ async function AddCarousel(label, name) {
 	movies_container.classList.add('movies');
 
 	const left_arrow = document.createElement('div');
-	left_arrow.classList.add('left');
+	left_arrow.classList.add('left', 'disabled');
 	left_arrow.setAttribute('onclick', 'SlideLeft(this)');
 	left_arrow.innerHTML = "<i class=\"fas fa-chevron-left\"></i>";
 
 	movies_container.appendChild(left_arrow);
 
+	document.querySelector('.container').appendChild(carousel);
+
+	const movies = await GetMoviesOfCategory(name);
+
 	let i = 0;
 	for (const movie of movies) {
-		console.log(movie)
 		const div_movie = document.createElement('div');
 		div_movie.classList.add('movie');
 		if (i > 4)
@@ -134,10 +135,11 @@ async function AddCarousel(label, name) {
 	movies_container.appendChild(right_arrow);
 
 	carousel.appendChild(movies_container);
-
-	document.querySelector('.container').appendChild(carousel);
 }
 
 window.addEventListener('load', (ev) => {
-	AddCarousel("Films les mieux notés", "")
+	AddCarousel("Films les mieux notés", "");
+	AddCarousel("Action", "action");
+	AddCarousel("Drame", "drama");
+	AddCarousel("Animation", "animation");
 });
