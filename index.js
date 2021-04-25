@@ -82,11 +82,62 @@ async function GetMovieInfos(id) {
 	return result;
 }
 
-document.addEventListener('load', (ev) => {
+async function AddCarousel(label, name) {
+	console.log("Add")
+	const movies = await GetMoviesOfCategory(name);
+	const carousel = document.createElement('div');
+	carousel.classList.add('carousel');
 
+	const title = document.createElement('div');
+	title.classList.add('title');
+	title.textContent = label;
+	carousel.append(title);
+
+	const movies_container = document.createElement('div');
+	movies_container.classList.add('movies');
+
+	const left_arrow = document.createElement('div');
+	left_arrow.classList.add('left');
+	left_arrow.setAttribute('onclick', 'SlideLeft(this)');
+	left_arrow.innerHTML = "<i class=\"fas fa-chevron-left\"></i>";
+
+	movies_container.appendChild(left_arrow);
+
+	let i = 0;
+	for (const movie of movies) {
+		console.log(movie)
+		const div_movie = document.createElement('div');
+		div_movie.classList.add('movie');
+		if (i > 4)
+			div_movie.classList.add('hide');
+		div_movie.setAttribute('onclick', 'OpenModal(this)');
+
+		const title = document.createElement('div');
+		title.classList.add('title');
+		title.textContent = movie.title;
+		div_movie.appendChild(title);
+
+		const image = document.createElement('img');
+		image.src = movie.image_url;
+		div_movie.appendChild(image);
+
+		movies_container.appendChild(div_movie);
+		
+		i++;
+	}
+
+	const right_arrow = document.createElement('div');
+	right_arrow.classList.add('right');
+	right_arrow.setAttribute('onclick', 'SlideRight(this)');
+	right_arrow.innerHTML = "<i class=\"fas fa-chevron-right\"></i>";
+
+	movies_container.appendChild(right_arrow);
+
+	carousel.appendChild(movies_container);
+
+	document.querySelector('.container').appendChild(carousel);
+}
+
+window.addEventListener('load', (ev) => {
+	AddCarousel("Films les mieux notés", "")
 });
-
-// GetMovieInfos();
-(async () => {
-	console.log((await GetMoviesOfCategory('action')));
-})();
