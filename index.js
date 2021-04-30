@@ -123,6 +123,7 @@ async function AddCarousel(label, name, skipping = 0) {
 		if (i > 4)
 			div_movie.classList.add('hide');
 		div_movie.setAttribute('onclick', 'OpenModal(this)');
+		div_movie.setAttribute('movie_id', movie.id);
 
 		const title = document.createElement('div');
 		title.classList.add('title');
