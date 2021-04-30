@@ -52,43 +52,40 @@ function CloseModal() {
 }
 
 function SlideRight(elem) {
-	if (elem.classList.contains('disabled'))
+	let state = Number(elem.parentElement.getAttribute('state'));
+	if (state == NaN)
+		state = 0;
+	if (state >= 2)
 		return;
-	const parent = elem.parentElement;
+	
+	elem.parentElement.querySelectorAll('.movie.hide')[state].classList.remove('hide');
+	elem.parentElement.querySelectorAll('.movie')[state].classList.add('hide');
+	state++;
+	elem.parentElement.setAttribute('state', state);
 
-	const nextToReveal = parent.querySelector('.movie ~ .movie.hide');
-	const nextToHide = parent.querySelector('.movie:not(.hide)');
+	if (elem.parentElement.querySelector('.left').classList.contains('disabled'))
+		elem.parentElement.querySelector('.left').classList.remove('disabled')
 
-	nextToHide.classList.add('hide');
-	nextToReveal.classList.remove('hide');
-
-
-	if (parent.querySelector('.left').classList.contains('disabled'))
-		parent.querySelector('.left').classList.remove('disabled')
-
-	const movies = parent.querySelectorAll('.movie')
-	if (!movies[movies.length - 1].classList.contains('hide'))
+	if (state >= 2)
 		elem.classList.add('disabled');
 }
 
 function SlideLeft(elem) {
-	if (elem.classList.contains('disabled'))
+	let state = Number(elem.parentElement.getAttribute('state'));
+	if (state == NaN)
+		state = 0;
+	if (state <= 0)
 		return;
-	const parent = elem.parentElement;
+	
+	elem.parentElement.querySelectorAll('.movie')[state + 4].classList.add('hide');
+	elem.parentElement.querySelectorAll('.movie.hide')[state - 1].classList.remove('hide');
+	state--;
+	elem.parentElement.setAttribute('state', state);
 
-	const test = parent.querySelector('.movie.hide ~ .movie') != null;
-	const nextToReveal = test ? parent.querySelector('.movie.hide + .movie.hide') : parent.querySelectorAll('.movie.hide')[parent.querySelectorAll('.movie.hide').length - 1];
-	const visible = parent.querySelectorAll('.movie:not(.hide)');
-	const nextToHide = visible[visible.length - 1];
+	if (elem.parentElement.querySelector('.right').classList.contains('disabled'))
+		elem.parentElement.querySelector('.right').classList.remove('disabled')
 
-	nextToHide.classList.add('hide');
-	nextToReveal.classList.remove('hide');
-
-	if (parent.querySelector('.right').classList.contains('disabled'))
-		parent.querySelector('.right').classList.remove('disabled')
-
-	const movies = parent.querySelectorAll('.movie')
-	if (!movies[0].classList.contains('hide'))
+	if (state <= 0)
 		elem.classList.add('disabled');
 }
 
