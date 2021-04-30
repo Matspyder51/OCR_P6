@@ -215,6 +215,11 @@ header ul li:hover {
   width: 50%;
   height: 50%;
   background: rgba(0, 0, 0, 0.8);
+  display: grid;
+  grid-template-columns: 0.2fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas: "image infos infos" "description description description";
 }
 .modal-container .modal .close {
   position: absolute;
@@ -229,17 +234,34 @@ header ul li:hover {
   opacity: 1;
 }
 .modal-container .modal .image {
+  grid-area: image;
   display: inline-block;
   margin-right: 15px;
 }
 .modal-container .modal .base_infos {
+  grid-area: infos;
   display: inline-block;
   vertical-align: top;
+}
+.modal-container .modal .base_infos .info {
+  color: #a0a0a0;
+}
+.modal-container .modal .base_infos .info span {
+  color: white;
+  text-align: justify;
 }
 .modal-container .modal .base_infos .title {
   margin: 5px 0;
   font-size: 32px;
   text-decoration: underline;
+}
+.modal-container .modal .base_infos .actors {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+.modal-container .modal .description {
+  grid-area: description;
+  margin-top: 25px;
 }
 
 .modal-container.visible {

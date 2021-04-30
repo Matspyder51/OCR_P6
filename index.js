@@ -1,7 +1,48 @@
-function OpenModal(from) {
-	const modal = document.querySelector('.modal-container');
+let modal = {
+	image: document.querySelector('.modal .image img'),
+	title: document.querySelector('.modal .base_infos .title'),
+	rated: document.querySelector('.modal .base_infos .rated span'),
+	imdb: document.querySelector('.modal .base_infos .imdb span'),
+	release_date: document.querySelector('.modal .base_infos .release_date span'),
+	types: document.querySelector('.modal .base_infos .types span'),
+	realisator: document.querySelector('.modal .base_infos .realisator span'),
+	actors: document.querySelector('.modal .base_infos .actors span'),
+	duration: document.querySelector('.modal .base_infos .duration span span'),
+	countries: document.querySelector('.modal .base_infos .countries span'),
+	description: document.querySelector('.modal .description'),
+}
 
-	modal.classList.add('visible');
+async function OpenModal(from) {
+	const _modal = document.querySelector('.modal-container');
+
+	const movie_id = from.getAttribute('movie_id');
+
+	movie_data = await GetMovieInfos(movie_id);
+
+	console.log(modal.image)
+	modal.image.src = movie_data.image_url;
+	modal.title.textContent = movie_data.title;
+	modal.imdb.textContent = movie_data.imdb_score;
+	modal.release_date.textContent = movie_data.date_published;
+	modal.duration.textContent = movie_data.duration;
+	modal.description.textContent = movie_data.long_description;
+
+	modal.countries.textContent = movie_data.countries.join(', ');
+	modal.actors.textContent = movie_data.actors.join(', ');
+	modal.types.textContent = movie_data.genres.join(', ');
+	modal.realisator.textContent = movie_data.directors.join(', ');
+
+	const amountOfStars = Number(movie_data.rated) / 2;
+	let ratedContent = '';
+	for (let i = 0; i < amountOfStars - 1; i++)
+		ratedContent += '<i class="fas fa-star"></i>';
+	for (let i = 10 - amountOfStars + 1; i > 0; i--)
+		ratedContent += '<i class="far fa-star"></i>';
+	modal.rated.innerHTML = ratedContent;
+
+	console.log(movie_data)
+
+	_modal.classList.add('visible');
 }
 
 function CloseModal() {
@@ -159,6 +200,7 @@ window.addEventListener('load', (ev) => {
 		const movie_data = await GetMovieInfos(movie.id);
 		// console.log(movie_data);
 		document.querySelector('.main_movie .movie_infos h2').textContent = movie.title;
+		document.querySelector('.main_movie .movie_infos .play_btn').setAttribute('movie_id', movie.id);
 		document.querySelector('.main_movie .description').textContent = movie_data.long_description;
 		document.querySelector('.main_movie img').src = movie.image_url;
 	});

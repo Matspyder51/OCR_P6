@@ -259,6 +259,13 @@ header {
 		width: 50%;
 		height: 50%;
 		background: rgba(0, 0, 0, .8);
+		display: grid;
+		grid-template-columns: .2fr 1fr 1fr;
+		grid-template-rows: 1fr 1fr;
+		gap: 0px 0px;
+		grid-template-areas:
+			"image infos infos"
+			"description description description";
 
 		.close {
 			position: absolute;
@@ -275,19 +282,40 @@ header {
 		}
 
 		.image {
+			grid-area: image;
 			display: inline-block;
 			margin-right: 15px;
 		}
 
 		.base_infos {
+			grid-area: infos;
 			display: inline-block;
 			vertical-align: top;
+
+			.info {
+				color: rgb(160, 160, 160);
+
+				span {
+					color: white;
+					text-align: justify;
+				}
+			}
 
 			.title {
 				margin: 5px 0;
 				font-size: 32px;
 				text-decoration: underline;
 			}
+
+			.actors {
+				max-width: 100%;
+				overflow-x: hidden;
+			}
+		}
+
+		.description {
+			grid-area: description;
+			margin-top: 25px;
 		}
 	}
 }
