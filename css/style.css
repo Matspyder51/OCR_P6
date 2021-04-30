@@ -53,14 +53,21 @@ header ul li:hover {
 }
 
 .main_movie {
-  width: 90%;
+  width: 60%;
   height: 250px;
   margin: 15px auto;
   display: grid;
-  grid-template-columns: 0.3fr 1fr;
+  grid-template-columns: 0.3fr 0.4fr 0.3fr;
   grid-template-rows: 1fr;
   gap: 0px 0px;
-  grid-template-areas: ". .";
+  grid-template-areas: ". . .";
+}
+.main_movie .description {
+  color: white;
+  font-size: 18px;
+  text-align: center;
+  padding-top: 50px;
+  margin: 0 25px;
 }
 .main_movie .movie_infos {
   display: inline-block;
@@ -87,8 +94,9 @@ header ul li:hover {
 }
 .main_movie img {
   display: inline-block;
-  width: 100%;
+  width: auto;
   height: 250px;
+  margin: 0 auto;
 }
 
 .container {

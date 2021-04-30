@@ -35,8 +35,8 @@ function SlideLeft(elem) {
 		return;
 	const parent = elem.parentElement;
 
-	const hided = parent.querySelectorAll('.movie.hide')
-	const nextToReveal = parent.querySelectorAll('.movie ~ .movie.hide').length > 0 ? hided[hided.length - 1] : hided[0];
+	const test = parent.querySelector('.movie.hide ~ .movie') != null;
+	const nextToReveal = test ? parent.querySelector('.movie.hide + .movie.hide') : parent.querySelectorAll('.movie.hide')[parent.querySelectorAll('.movie.hide').length - 1];
 	const visible = parent.querySelectorAll('.movie:not(.hide)');
 	const nextToHide = visible[visible.length - 1];
 
@@ -46,14 +46,12 @@ function SlideLeft(elem) {
 	if (parent.querySelector('.right').classList.contains('disabled'))
 		parent.querySelector('.right').classList.remove('disabled')
 
-	// const movies = parent.querySelectorAll('.movie')
-	// if (!movies[movies.length - 1].classList.contains('hide'))
-	// 	elem.classList.add('disabled');
+	const movies = parent.querySelectorAll('.movie')
+	if (!movies[0].classList.contains('hide'))
+		elem.classList.add('disabled');
 }
 
-// OpenModal()
-
-async function GetMoviesOfCategory(name, amount = 7, sorted_by = "&sort_by=-votes,-imdb_score") {
+async function GetMoviesOfCategory(name, amount = 7, skip = 0, sorted_by = "&sort_by=-votes,-imdb_score") {
 	const results = await fetch(`http://localhost:8000/api/v1/titles/?genre=${name}${sorted_by}`);
 
 	if (!results.ok)
@@ -61,6 +59,9 @@ async function GetMoviesOfCategory(name, amount = 7, sorted_by = "&sort_by=-vote
 
 	const data = await results.json();
 	let result = Array(...data.results);
+
+	if (skip > 0)
+		result.splice(0, skip);
 
 	if (result.length < amount) {
 		const results2 = await (await fetch(data.next)).json();
@@ -82,7 +83,17 @@ async function GetMovieInfos(id) {
 	return result;
 }
 
-async function AddCarousel(label, name) {
+async function GetBestMovie() {
+	return new Promise(async (resolve, reject) => {
+		const results = await fetch('http://localhost:8000/api/v1/titles/?sort_by=-votes,-imdb_score');
+
+		const movies = await results.json();
+
+		resolve(movies.results[0]);
+	});
+}
+
+async function AddCarousel(label, name, skipping = 0) {
 	const carousel = document.createElement('div');
 	carousel.classList.add('carousel');
 
@@ -103,7 +114,7 @@ async function AddCarousel(label, name) {
 
 	document.querySelector('.container').appendChild(carousel);
 
-	const movies = await GetMoviesOfCategory(name);
+	const movies = await GetMoviesOfCategory(name, 7, skipping);
 
 	let i = 0;
 	for (const movie of movies) {
@@ -138,8 +149,16 @@ async function AddCarousel(label, name) {
 }
 
 window.addEventListener('load', (ev) => {
-	AddCarousel("Films les mieux notés", "");
+	AddCarousel("Films les mieux notés", "", 1);
 	AddCarousel("Action", "action");
-	AddCarousel("Drame", "drama");
+	AddCarousel("Sci-Fi", "Sci-Fi");
 	AddCarousel("Animation", "animation");
+
+	GetBestMovie().then(async (movie) => {
+		const movie_data = await GetMovieInfos(movie.id);
+		// console.log(movie_data);
+		document.querySelector('.main_movie .movie_infos h2').textContent = movie.title;
+		document.querySelector('.main_movie .description').textContent = movie_data.long_description;
+		document.querySelector('.main_movie img').src = movie.image_url;
+	});
 });
