@@ -19,7 +19,6 @@ async function OpenModal(from) {
 
 	movie_data = await GetMovieInfos(movie_id);
 
-	console.log(modal.image)
 	modal.image.src = movie_data.image_url;
 	modal.title.textContent = movie_data.title;
 	modal.imdb.textContent = movie_data.imdb_score;
@@ -39,8 +38,6 @@ async function OpenModal(from) {
 	for (let i = 10 - amountOfStars + 1; i > 0; i--)
 		ratedContent += '<i class="far fa-star"></i>';
 	modal.rated.innerHTML = ratedContent;
-
-	console.log(movie_data)
 
 	_modal.classList.add('visible');
 }
